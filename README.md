@@ -1,1 +1,1 @@
-Rubix Hackathon
+# Rubix Hackathon

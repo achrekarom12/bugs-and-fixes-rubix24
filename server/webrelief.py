@@ -3,6 +3,7 @@ import json
 
 blog_dict = {}
 article_dict={}
+loc_dict={}
 
 disaster = "Flood"
 
@@ -20,8 +21,13 @@ for key in blog_dict.keys():
     body_response=requests.get(key)
     blog_body=body_response.json()
 
+    # print(key)
+
     title = blog_dict[key]
     article_dict[title] = blog_body['data'][0]['fields']['url_alias']
 
+    loc_dict[blog_body['data'][0]['fields']['primary_country']['name']] = blog_body['data'][0]['fields']['primary_country']['location']['lat'], blog_body['data'][0]['fields']['primary_country']['location']
+    print(loc_dict)                                                                                                                                                                                                      
 
-print(article_dict)
+
+# print(article_dict)

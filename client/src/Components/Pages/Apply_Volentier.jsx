@@ -2,9 +2,15 @@ import React from 'react'
 
 const Apply_Volentier = () => {
   return (
-    <div>
-      apply for volentier
-    </div>
+    <>
+      <Navbar />
+      <div className='flex flex-row h-screen'>
+        <Sidebar />
+        <div>
+
+        </div>
+      </div>
+    </>
   )
 }
 

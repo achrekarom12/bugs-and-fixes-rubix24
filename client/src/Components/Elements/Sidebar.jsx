@@ -3,7 +3,7 @@ import React from 'react'
 const Sidebar = () => {
   return (
 
-    <div className='bg-[#111111] w-[256px] h-screen'>
+    <div className='absolute bg-[#111111] w-[256px] h-screen z-[100]'>
       <div className='flex flex-col gap-[71px] px-[20px] pt-[150px] cursor-pointer'>
         <div className='h-auto w-[216px] hover:scale-105 ease-out duration-300'>
           <h1 className='text-[#ffff] text-[31px]'>Home</h1>

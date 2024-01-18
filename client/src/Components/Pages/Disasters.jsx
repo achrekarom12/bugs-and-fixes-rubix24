@@ -68,7 +68,8 @@ const Disasters = () => {
                 <div className='flex items-center justify-center'>
                     <h1 className='font-semibold mr-5 mb-3' style={{ fontSize: 24, color: 'white' }}>Recent Earthquakes:</h1>
                     <div className='w-[600px] bg-white shadow rounded-lg p-4 mb-4 item-center justify-center flex overflow-hidden'>
-                        <Marquee>
+                        <Marquee pauseOnHover="this.stop();">
+
                             <Earth loc={edata[0]['loc']} magnitude={edata[0]['magnitude']} time={edata[0]["time"]} />
                             <Earth loc={edata[1]['loc']} magnitude={edata[1]['magnitude']} time={edata[1]["time"]} />
                             <Earth loc={edata[2]['loc']} magnitude={edata[2]['magnitude']} time={edata[2]["time"]} />
@@ -125,18 +126,8 @@ const Disasters = () => {
                     </div>
                 </div>
 
-                <div className='flex items-center justify-center'>
-                    <div className='w-[900px] h-[400px] bg-white shadow-lg rounded-lg mt-6 mb-6'>
-                        <h1 className='text-center mt-2 font-semibold' style={{ fontSize: 24 }}>Sign Up to Get Alerts on Your Phone!</h1>
-                        <p className='p-4 justify-center text-center'>Get notifications on your phone as soon as our systems detect alerts, disasters detected around you.</p>
-                        <form className='grid grid-cols-2 gap-4 p-2'>
-                            <input type='text' placeholder='Name' className='h-[50px] border border-black rounded ml-4' />
-                            <input type='number' placeholder='Phone Number' className='h-[50px] border border-black rounded mr-4' />
-                            <input type='email' placeholder='Email' className='h-[50px] border border-black rounded ml-4' />
-                            <input type='text' placeholder='Location' className='h-[50px] border border-black rounded mr-4' />
-                            <button type='submit' className='col-span-2 mt-4 px-4 py-2 bg-blue-500 text-white rounded'>Sign Up</button>
-                        </form>
-                    </div>
+                <div className='mt-5 justify-center text-center' >
+                    <h3 style={{ color: 'white', fontFamily: 'Poppins' }}>Created by Team Bugs & Fixes</h3>
                 </div>
 
             </div >

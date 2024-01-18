@@ -2,11 +2,18 @@ import React from 'react'
 import Desdata from '../../utils/Desasterinfo.js';
 import Climate from '../Elements/Climate.jsx';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import Desasterget from '../../API_init/Desasterapi.js';
 
 
 const d = new Desasterget();
 const data = await d.alerts();
+function Card({ title, content }) {
+    return (
+        <div className='bg-white shadow rounded-lg p-4 mb-4'>
+            <h3 className='font-bold text-xl mb-2'>{title}</h3>
+            <p>{content}</p>
+        </div>
+    );
+}
 
 const Desasters = () => {
     const { isLoaded } = useJsApiLoader({
@@ -19,27 +26,27 @@ const Desasters = () => {
     };
 
     const defaultCenter = {
-        lat: data[0]["loc"][1],
-        lng: data[0]["loc"][0],
-        
+        lat: 20.5937,
+        lng: 78.9629,
     };
     
     const markers = [
-        { position: { lat: data[0]["loc"][1], lng: data[0]["loc"][0] }, content: 'Marker 1' },
-        { position: { lat: data[0]["loc"][1], lng: data[0]["loc"][0] }, content: 'Marker 2' },
-      ];
+        { position: { lat: 37.7749, lng: -122.4194 }, content: 'Marker 1' },
+        { position: { lat: 37.785, lng: -122.406 }, content: 'Marker 2' },
+        // Add more markers as needed
+    ];
 
     return (
         <>
-            <div className='w-full h-[552px] sm:mt-[50px] mt-[10px] '>
-                <h1 className='sm:text-[38px] text-[20px] text-center font-bold'>Disaster's in your location</h1>
-                <div className='flex flex-row gap-10 items-center justify-center mt-[10px]'>
-                    <div className='w-[500px] h-screen bg-gray-600 overflow-hidden'>
+            <div className='w-full h-[552px] sm:mt-[5px] mt-[10px] '>
+
+                <div className='flex flex-row gap-1 items-center justify-center mt-[10px]'>
+                    <div className='w-[500px] h-[600px] bg-gray-600 overflow-hidden rounded-lg'>
                         {isLoaded ? (
                             <GoogleMap
                                 mapContainerStyle={mapStyles}
                                 center={defaultCenter}
-                                zoom={10}
+                                zoom={4.5}
                             >
                                 {markers.map((marker, index) => (
                                     <Marker
@@ -47,7 +54,7 @@ const Desasters = () => {
                                         position={marker.position}
                                         icon={{
                                             url: './icons/disaster_icons/Earthquakes.png',
-                                            scaledSize: new window.google.maps.Size(40, 40), 
+                                            scaledSize: new window.google.maps.Size(40, 40),
                                         }}
                                         onClick={() => {
                                             console.log(`Marker ${index + 1} clicked!`);
@@ -66,24 +73,15 @@ const Desasters = () => {
                             <p>Loading...</p>
                         )}
                     </div>
-                    <Climate />
-                </div>
-                {/* <div className='flex sm:flex-row flex-col sm:gap-20 gap-3 sm:ml-[297px] ml-0'>
-                    <div className='flex-row gap-3 flex mt-10'>
-                        <div className='flex flex-col gap-[4px]'>
-                            <img className='w-[21px] h-[21px]' src={Desdata.Earthquakes.img} />
-                            <img className='w-[21px] h-[21px]' src={Desdata.Floods.img} />
-                            <img className='w-[21px] h-[21px]' src={Desdata.Volcanic_Eruptions.img} />
-                            <img className='w-[21px] h-[21px]' src={Desdata.Wildfires.img} />
-                        </div>
-                        <div className='flex flex-col gap-[4px]'>
-                            <h1 className='text-[#FF6A00]'>{Desdata.Earthquakes.name}</h1>
-                            <h1 className='text-[#FF6A00]'>{Desdata.Floods.name}</h1>
-                            <h1 className='text-[#FF6A00]'>{Desdata.Volcanic_Eruptions.name}</h1>
-                            <h1 className='text-[#FF6A00]'>{Desdata.Wildfires.name}</h1>
-                        </div>
+                    <div className='w-[400px] h-[600px] bg-white shadow-lg rounded-lg p-4'>
+                        <h2 className='text-xl font-bold mb-4 text-center' style={{ fontFamily: 'Poppins', fontWeight: 500 }}>Disaster Alerts</h2>
+                        <Card title='Card 1' content='Content for Card 1' />
+                        <Card title='Card 2' content='Content for Card 2' />
+                        <Card title='Card 3' content='Content for Card 3' />
+                        <Card title='Card 4' content='Content for Card 4' />
+                        <Card title='Card 5' content='Content for Card 5' />
                     </div>
-                </div> */}
+                </div>
             </div>
         </>
     )

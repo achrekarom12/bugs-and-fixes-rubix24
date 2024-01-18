@@ -1,7 +1,7 @@
 import React from 'react'
 import Desdata from '../../utils/Desasterinfo.js';
 import Climate from '../Elements/Climate.jsx';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 
 const Desasters = () => {
@@ -20,18 +20,45 @@ const Desasters = () => {
         lng: -122.4194,
     };
 
+    const markers = [
+        { position: { lat: 37.7749, lng: -122.4194 }, content: 'Marker 1' },
+        { position: { lat: 37.785, lng: -122.406 }, content: 'Marker 2' },
+        // Add more markers as needed
+      ];
+
     return (
         <>
             <div className='w-full h-[552px] sm:mt-[50px] mt-[10px] '>
-                <h1 className='sm:text-[38px] text-[20px] text-center'>Disaster's in your location</h1>
-                <div className='flex flex-row gap-10 items-center justify-center'>
+                <h1 className='sm:text-[38px] text-[20px] text-center font-bold'>Disaster's in your location</h1>
+                <div className='flex flex-row gap-10 items-center justify-center mt-[10px]'>
                     <div className='w-[500px] h-screen bg-gray-600 overflow-hidden'>
                         {isLoaded ? (
                             <GoogleMap
                                 mapContainerStyle={mapStyles}
                                 center={defaultCenter}
                                 zoom={10}
-                            />
+                            >
+                                {markers.map((marker, index) => (
+                                    <Marker
+                                        key={index}
+                                        position={marker.position}
+                                        icon={{
+                                            url: './icons/disaster_icons/Earthquakes.png',
+                                            scaledSize: new window.google.maps.Size(40, 40), 
+                                        }}
+                                        onClick={() => {
+                                            console.log(`Marker ${index + 1} clicked!`);
+                                        }}
+                                    >
+                                        {marker.content && (
+                                            <div>
+                                                <h3>{marker.content}</h3>
+                                            </div>
+                                        )}
+                                    </Marker>
+                                ))}
+                            </GoogleMap>
+
                         ) : (
                             <p>Loading...</p>
                         )}

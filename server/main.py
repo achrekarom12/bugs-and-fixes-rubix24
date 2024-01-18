@@ -13,7 +13,7 @@ def get_alerts():
 
     alerts = []
 
-    for i in range(5):
+    for i in range(9):
         latitude, longitude = map(float, data_response[i]['centroid'].split(','))
         alert = {
             'level': data_response[i]['severity'],

@@ -4,7 +4,6 @@ import Navbar from '../Elements/Navbar';
 import Desasters from './Disasters.jsx';
 import ContactUs from './ContactUs.jsx';
 import Blog_page from './Search.jsx';
-import Blog_page from './Blog_page.jsx';
 import SubscribeForm from '../Elements/Subscribeform';
 
 
@@ -26,7 +25,7 @@ const Home = () => {
         <div>
           {/* Your main content */}
           <button className="border-2 border-black p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
-          onClick={openForm}>Open Subscribe Form</button>
+            onClick={openForm}>Open Subscribe Form</button>
 
           {/* Conditionally render the form based on state */}
           {isFormOpen && <SubscribeForm onClose={closeForm} />}

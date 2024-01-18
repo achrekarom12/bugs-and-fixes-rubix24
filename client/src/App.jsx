@@ -1,5 +1,5 @@
 import './App.css'
-import { Disasters, ContactUs, Volunteer, Search, Image } from './Components/Pages'
+import { Disasters, ContactUs, Search, Image } from './Components/Pages'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Elements/Navbar';
 
@@ -10,12 +10,11 @@ function App() {
   return (
 
     <Router>
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route exact path="/" element={<Disasters />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/image" element={<Image />} />
-        <Route exact path="/search" element={<Volunteer />} />
         <Route exact path="/contact" element={<ContactUs />} />
       </Routes>
     </Router>

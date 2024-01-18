@@ -1,8 +1,7 @@
-class Desasterget
-{
-    alerts = async ()=>{
+class Desasterget {
+    alerts = async () => {
         const response = await fetch("http://127.0.0.1:5000/alerts", {
-            method:"GET",
+            method: "GET",
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -13,10 +12,10 @@ class Desasterget
         return data;
     }
 
-    blogs = async (Search)=>{
+    blogs = async (Search) => {
         console.log(Search)
-        const response  = await fetch("http://127.0.0.1:5000/relief-blogs/<disaster>",{
-            method:"GET",
+        const response = await fetch(`http://127.0.0.1:5000/relief-blogs/${Search}`, {
+            method: "GET",
             headers: {
                 'Content-Type': 'application/json',
             },

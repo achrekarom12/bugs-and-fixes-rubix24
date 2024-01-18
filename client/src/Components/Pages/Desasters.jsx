@@ -2,7 +2,7 @@ import React from 'react'
 import Desdata from '../../utils/Desasterinfo.js';
 import Climate from '../Elements/Climate.jsx';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-
+import Desasterget from '../../API_init/Desasterapi.js';
 
 const d = new Desasterget();
 const data = await d.alerts();
@@ -26,12 +26,12 @@ const Desasters = () => {
     };
 
     const defaultCenter = {
-        lat: 20.5937,
-        lng: 78.9629,
+        lat: data[0]["loc"][1],
+        lng: data[0]["loc"][0],
     };
     
     const markers = [
-        { position: { lat: 37.7749, lng: -122.4194 }, content: 'Marker 1' },
+        { position: { lat: data[0]["loc"][1], lng: data[0]["loc"][0] }, content: 'Marker 1' },
         { position: { lat: 37.785, lng: -122.406 }, content: 'Marker 2' },
         // Add more markers as needed
     ];

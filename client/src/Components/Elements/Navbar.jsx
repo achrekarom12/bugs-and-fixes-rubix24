@@ -14,14 +14,12 @@ const Navbar = (props) => {
             className='  p-2 rounded mt-2 mb-4 mr-4 hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Home</Link>
           <Link to='/search' onClick={() => { props.visiblitieupdate(1) }}
             className=' p-2 rounded mt-2  mb-4 mr-4  hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}><FaMagnifyingGlass /></Link>
-          <Link to='/volunteer' onClick={() => { props.visiblitieupdate(2) }}
-            className='  p-2 rounded mt-2 mb-4 mr-4  hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Volunteer</Link>
-          <Link to='/contact' onClick={() => { props.visiblitieupdate(3) }}
-            className='  p-2 rounded mt-2 mb-4 mr-4  hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Contact Us</Link>
           <Link to='/image' onClick={() => { props.visiblitieupdate(3) }}
             className='  p-2 rounded mt-2 mb-4 mr-4  hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Image</Link>
+          <Link to='/contact' onClick={() => { props.visiblitieupdate(3) }}
+            className='  p-2 rounded mt-2 mb-4 mr-4  hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Contact Us</Link>
           <Link to='/contact' onClick={() => { props.visiblitieupdate(4) }}
-            className='  p-2 rounded mt-2 mb-4 mr-4 hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Subsribe Now</Link>
+            className='  p-2 rounded mt-2 mb-4 mr-4 hover:scale-125 transition-transform duration-300 ease-in-out' style={{ backgroundColor: 'white', fontFamily: 'Poppins', fontWeight: 700, color: '#0184b0' }}>Subscribe Now</Link>
         </div>
       </div>
     </div>

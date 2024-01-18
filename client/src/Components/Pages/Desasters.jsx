@@ -2,10 +2,13 @@ import React from 'react'
 import Desdata from '../../utils/Desasterinfo.js';
 import Climate from '../Elements/Climate.jsx';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import Desasterget from '../../API_init/Desasterapi.js';
 
+
+const d = new Desasterget();
+const data = await d.alerts();
 
 const Desasters = () => {
-    const center = [51.505, -0.09];
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: ' AIzaSyB1XUi0NtTF-tzkXfztumuiE--O10b7tTc',
     });
@@ -16,14 +19,14 @@ const Desasters = () => {
     };
 
     const defaultCenter = {
-        lat: 37.7749,
-        lng: -122.4194,
+        lat: data[0]["loc"][1],
+        lng: data[0]["loc"][0],
+        
     };
-
+    
     const markers = [
-        { position: { lat: 37.7749, lng: -122.4194 }, content: 'Marker 1' },
-        { position: { lat: 37.785, lng: -122.406 }, content: 'Marker 2' },
-        // Add more markers as needed
+        { position: { lat: data[0]["loc"][1], lng: data[0]["loc"][0] }, content: 'Marker 1' },
+        { position: { lat: data[0]["loc"][1], lng: data[0]["loc"][0] }, content: 'Marker 2' },
       ];
 
     return (

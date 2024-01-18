@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
@@ -12,6 +14,7 @@ def get_alerts():
     alerts = []
 
     for i in range(5):
+        latitude, longitude = map(float, data_response[i]['centroid'].split(','))
         alert = {
             'level': data_response[i]['severity'],
             'start': data_response[i]['effective_start_time'],
@@ -19,12 +22,14 @@ def get_alerts():
             'type': data_response[i]['disaster_type'],
             'message':data_response[i]['warning_message'],
             'color': data_response[i]['severity_color'],
-            'loc': data_response[i]['centroid'],
+            'loc': [latitude, longitude],
             'source': data_response[i]['alert_source']
         }
         alerts.append(alert)
 
     return jsonify(alerts)
+
+
 @app.route('/relief-blogs/<disaster>', methods=['GET'])
 def get_relief_blogs(disaster):
     blog_dict = {}

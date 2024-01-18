@@ -5,7 +5,7 @@ import Desasterget from '../../API_init/Desasterapi'
 const d = new Desasterget();
 const data = await d.blogs();
 
-const Blog_page = () => {
+const Search = () => {
   const blogss = [];
   for (var i = 0; i < data.length; i++) {
     blogss.push(<Blog key={i} title={data[i]["title"]} />)
@@ -27,4 +27,4 @@ const Blog_page = () => {
   )
 }
 
-export default Blog_page
+export default Search

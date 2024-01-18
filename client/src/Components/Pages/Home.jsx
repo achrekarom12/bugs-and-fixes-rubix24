@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Navbar from '../Elements/Navbar';
 import Sidebar from '../Elements/Sidebar'
-import Desasters from './Desasters.jsx';
+import Desasters from './Disasters.jsx';
 import ContactUs from './ContactUs.jsx';
-import Blog_page from './Blog_page.jsx';
+import Blog_page from './Search.jsx';
 
 const Home = () => {
   const visiblity_states = ["visible", "hidden"];
@@ -15,10 +15,10 @@ const Home = () => {
     <>
       <Navbar visiblitieupdate={visiblitieupdate} />
       <div className='h-screen w-full flex flex-row gap-2'>
-        <Sidebar visiblity={visiblity_states[visible]} visiblitieupdate={visiblitieupdate}/>
+        <Sidebar visiblity={visiblity_states[visible]} visiblitieupdate={visiblitieupdate} />
         {/* <Desasters/> */}
         {/* <ContactUs /> */}
-        <Blog_page/>
+        <Blog_page />
       </div>
     </>
   )

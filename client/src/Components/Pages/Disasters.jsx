@@ -34,7 +34,7 @@ function Earth({ loc, magnitude, time }) {
     );
 }
 
-const Desasters = () => {
+const Disasters = () => {
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: ' AIzaSyB1XUi0NtTF-tzkXfztumuiE--O10b7tTc',
     });
@@ -139,4 +139,4 @@ const Desasters = () => {
     )
 }
 
-export default Desasters
+export default Disasters

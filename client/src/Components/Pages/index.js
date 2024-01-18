@@ -1,7 +1,8 @@
 import Home from './Home';
 import ContactUs from './ContactUs';
 import Volunteer from './Volunteer';
-import Desasters from './Desasters';
+import Disasters from './Disasters';
+import Search from './Search';
 
 
-export { Home, ContactUs, Volunteer, Desasters }
+export { Home, ContactUs, Volunteer, Disasters, Search }

@@ -94,11 +94,14 @@ def get_earthquake_alerts():
     earthquake_alerts = []
 
     for i in range(5):
+        timee = earthq['alerts'][i]['effective_start_time']
+
         earthquakes = {
             'lng': earthq['alerts'][i]['longitude'],
             'lat': earthq['alerts'][i]['latitude'],
             'magnitude': earthq['alerts'][i]['magnitude'],
-            'loc': earthq['alerts'][i]['direction']
+            'loc': earthq['alerts'][i]['direction'],
+            'time': timee[4:10]+" 2024 - " + timee[10:19] + " IST"
         }
         earthquake_alerts.append(earthquakes)
 

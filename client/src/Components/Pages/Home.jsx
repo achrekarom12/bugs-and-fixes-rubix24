@@ -5,9 +5,6 @@ import Desasters from './Desasters.jsx';
 import ContactUs from './ContactUs.jsx';
 import Blog_page from './Blog_page.jsx';
 
-
-
-
 const Home = () => {
   const visiblity_states = ["visible", "hidden"];
   const [visible, setvisible] = useState(1);

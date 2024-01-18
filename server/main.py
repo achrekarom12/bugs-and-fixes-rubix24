@@ -40,7 +40,7 @@ def get_relief_blogs(disaster):
     blog_response = requests.get(url)
     blogs = blog_response.json()
 
-    for i in range(5):
+    for i in range(4):
         blog = blogs["data"][i]
         blog_dict[blog['href']] = blog["fields"]["title"]
 
@@ -51,7 +51,6 @@ def get_relief_blogs(disaster):
         articles = {
             'title' : blog_dict[key],
             'link': blog_body['data'][0]['fields']['url_alias'],
-            'loc': blog_body['data'][0]['fields']['primary_country']['location']
         }
         article.append(articles)
 

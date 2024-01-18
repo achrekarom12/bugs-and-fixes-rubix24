@@ -50,11 +50,7 @@ def get_relief_blogs(disaster):
 
         articles = {
             'title' : blog_dict[key],
-<<<<<<< HEAD
-            'link': blog_body['data'][0]['fields']['url_alias'],
-=======
             'link': blog_body['data'][0]['fields']['url_alias']
->>>>>>> 5f72fd86cca6baee85a0c27c52fc08a2dbd05abd
         }
         article.append(articles)
 

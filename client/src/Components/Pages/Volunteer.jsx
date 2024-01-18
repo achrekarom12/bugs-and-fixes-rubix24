@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Apply_Volentier = () => {
+const Volunteer = () => {
   return (
     <>
       <Navbar />
@@ -14,4 +14,4 @@ const Apply_Volentier = () => {
   )
 }
 
-export default Apply_Volentier
+export default Volunteer

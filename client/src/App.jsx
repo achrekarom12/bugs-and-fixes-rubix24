@@ -1,14 +1,17 @@
 import './App.css'
-import { Home, Login, Signup } from './Components/Pages'
+import { Desasters, ContactUs, Volunteer } from './Components/Pages'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 
   return (
-    <>
-    {/* <Login/> */}
-    {/* <Signup/> */}
-    <Home/>
-    </>
+
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Desasters />} />
+        <Route exact path="/contact" element={<ContactUs />} />
+      </Routes>
+    </Router>
   )
 }
 

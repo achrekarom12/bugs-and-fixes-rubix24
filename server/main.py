@@ -4,10 +4,13 @@ import requests
 import google.generativeai as genai
 import io
 from PIL import Image
-
+import ai21
 
 app = Flask(__name__)
 CORS(app)
+
+gemini_api_key = "AIzaSyAD6vm7g8PSXBH2npVkRSwLINbFcyYIpxY"
+genai.configure(api_key = gemini_api_key)
 
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
@@ -17,14 +20,29 @@ def get_alerts():
 
     alerts = []
 
-    for i in range(9):
+    for i in range(4):
         latitude, longitude = map(float, data_response[i]['centroid'].split(','))
+
+        # mes_pf = f"""
+        # You are a disaster bot that takes alerts as an input and paraphrases it into easy terms for common public to understand.
+        # Paraphrase each alert in 1 sentence.
+        # alert: {data_response[i]['warning_message']}
+        # """
+
+        # model = genai.GenerativeModel('gemini-pro')
+        # mes = model.generate_content(mes_pf)
+        
+        ai21.api_key = 'iPUIaBJRH2WHx2yrJKYM0LCJnYV3gVxF'
+
+        mess = ai21.Paraphrase.execute(text=data_response[i]['warning_message'], style="general")
+        print(mess['suggestions'][0]['text'])
+
         alert = {
             'level': data_response[i]['severity'],
             'start': data_response[i]['effective_start_time'],
             'end': data_response[i]['effective_end_time'],
             'type': data_response[i]['disaster_type'],
-            'message':data_response[i]['warning_message'],
+            'message':mess['suggestions'][0]['text'],
             'color': data_response[i]['severity_color'],
             'loc': [latitude, longitude],
             'source': data_response[i]['alert_source']

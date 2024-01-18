@@ -4,6 +4,8 @@ import Earthquakeget from '../../API_init/earthquake.js';
 import Climate from '../Elements/Climate.jsx';
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import Marquee from "react-fast-marquee";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const e = new Earthquakeget();
 const edata = await e.alerts();
@@ -18,9 +20,9 @@ function Card({ title, content, color }) {
             style={{ backgroundColor: bgColor, transition: 'background-color 0.2s' }}
             onMouseEnter={() => setBgColor(color)}
             onMouseLeave={() => setBgColor('white')}>
-            <h3 className='text-l leading-tight mb-2' style={{ fontWeight: 500 }}>{title}</h3>
+            <h3 className='text-l leading-tight mb-2' style={{ fontWeight: 500 }}>{title || <Skeleton />}</h3>
             <hr style={{ backgroundColor: 'black', height: '2px' }} />
-            <p className=''>{content}</p>
+            <p className=''>{content || <Skeleton />}</p>
         </div>
     );
 }
@@ -55,11 +57,7 @@ const Disasters = () => {
         { position: { lat: data[1]['loc'][1], lng: data[1]['loc'][0] }, content: 'Marker 2' },
         { position: { lat: data[2]['loc'][1], lng: data[2]['loc'][0] }, content: 'Marker 3' },
         { position: { lat: data[3]['loc'][1], lng: data[3]['loc'][0] }, content: 'Marker 4' },
-        { position: { lat: data[4]['loc'][1], lng: data[4]['loc'][0] }, content: 'Marker 5' },
-        { position: { lat: data[5]['loc'][1], lng: data[5]['loc'][0] }, content: 'Marker 6' },
-        { position: { lat: data[6]['loc'][1], lng: data[6]['loc'][0] }, content: 'Marker 7' },
-        { position: { lat: data[7]['loc'][1], lng: data[7]['loc'][0] }, content: 'Marker 8' },
-        { position: { lat: data[8]["loc"][1], lng: data[8]["loc"][0] }, content: 'Marker 1' },
+
     ];
 
     return (
@@ -118,16 +116,17 @@ const Disasters = () => {
                         <Card title={data[1]['message']} content={data[1]['source']} color={data[1]['color']} />
                         <Card title={data[2]['message']} content={data[2]['source']} color={data[2]['color']} />
                         <Card title={data[3]['message']} content={data[3]['source']} color={data[3]['color']} />
-                        <Card title={data[4]['message']} content={data[4]['source']} color={data[4]['color']} />
-                        <Card title={data[5]['message']} content={data[5]['source']} color={data[5]['color']} />
-                        <Card title={data[6]['message']} content={data[6]['source']} color={data[6]['color']} />
-                        <Card title={data[7]['message']} content={data[7]['source']} color={data[7]['color']} />
-                        <Card title={data[8]['message']} content={data[8]['source']} color={data[8]['color']} />
+
                     </div>
                 </div>
 
-                <div className='mt-5 justify-center text-center' >
-                    <h3 style={{ color: 'white', fontFamily: 'Poppins' }}>Created by Team Bugs & Fixes</h3>
+                <div className='mt-5 mb-5 justify-center text-center flex' >
+                    <p className='mr-4'>
+                        <h2 style={{ color: 'orange', fontSize: 20, fontFamily: 'Poppins' }}>Orange</h2>ALERT
+                    </p>
+                    <p>
+                        <h2 style={{ color: 'yellow', fontSize: 20, fontFamily: 'Poppins' }}>Yellow</h2>WATCH
+                    </p>
                 </div>
 
             </div >

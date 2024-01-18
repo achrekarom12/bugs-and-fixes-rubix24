@@ -56,8 +56,9 @@ const Desasters = () => {
         { position: { lat: data[5]['loc'][1], lng: data[5]['loc'][0] }, content: 'Marker 6' },
         { position: { lat: data[6]['loc'][1], lng: data[6]['loc'][0] }, content: 'Marker 7' },
         { position: { lat: data[7]['loc'][1], lng: data[7]['loc'][0] }, content: 'Marker 8' },
+
         { position: { lat: data[8]["loc"][1], lng: data[8]["loc"][0] }, content: 'Marker 1' },
-        { position: { lat: 37.785, lng: -122.406 }, content: 'Marker 2' },
+
         // Add more markers as needed
     ];
 

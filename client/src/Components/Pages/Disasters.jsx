@@ -14,26 +14,29 @@ function Card({ title, content, color }) {
     const [bgColor, setBgColor] = useState('white');
 
     return (
-        <div className='bg-white shadow rounded-lg p-4 mb-4'
+        <div className='bg-gray-200 shadow-2xl border border-black rounded-lg p-4 mb-4'
             style={{ backgroundColor: bgColor, transition: 'background-color 0.2s' }}
             onMouseEnter={() => setBgColor(color)}
             onMouseLeave={() => setBgColor('white')}>
             <h3 className='text-l leading-tight mb-2' style={{ fontWeight: 500 }}>{title}</h3>
+            <hr style={{ backgroundColor: 'black', height: '2px' }} />
             <p className=''>{content}</p>
         </div>
     );
 }
 
-function Earth({ loc, magnitude }) {
+function Earth({ loc, magnitude, time }) {
     return (
         <div>
-            <p className='font-semibold mr-2'>Magnitude: {magnitude}   Location: {loc} <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span> </p>
+            <p className='font-semibold mr-2'>{magnitude} Magnitude | {loc} | {time}<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span> </p>
 
         </div>
     );
 }
 
-const Desasters = () => {
+
+const Disasters = () => {
+
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: ' AIzaSyB1XUi0NtTF-tzkXfztumuiE--O10b7tTc',
     });
@@ -56,28 +59,26 @@ const Desasters = () => {
         { position: { lat: data[5]['loc'][1], lng: data[5]['loc'][0] }, content: 'Marker 6' },
         { position: { lat: data[6]['loc'][1], lng: data[6]['loc'][0] }, content: 'Marker 7' },
         { position: { lat: data[7]['loc'][1], lng: data[7]['loc'][0] }, content: 'Marker 8' },
-
         { position: { lat: data[8]["loc"][1], lng: data[8]["loc"][0] }, content: 'Marker 1' },
-
-        // Add more markers as needed
     ];
 
     return (
         <>
             <div className='w-full h-[552px] sm:mt-[5px] mt-[10px] '>
                 <div className='flex items-center justify-center'>
-                    <div className='w-[800px] bg-white shadow rounded-lg p-4 mb-4 item-center justify-center flex overflow-hidden'>
+                    <h1 className='font-semibold mr-5 mb-3' style={{ fontSize: 24, color: 'white' }}>Recent Earthquakes:</h1>
+                    <div className='w-[600px] bg-white shadow rounded-lg p-4 mb-4 item-center justify-center flex overflow-hidden'>
                         <Marquee>
-                            <Earth loc={edata[0]['loc']} magnitude={edata[0]['magnitude']} />
-                            <Earth loc={edata[1]['loc']} magnitude={edata[1]['magnitude']} />
-                            <Earth loc={edata[2]['loc']} magnitude={edata[2]['magnitude']} />
-                            <Earth loc={edata[3]['loc']} magnitude={edata[3]['magnitude']} />
+                            <Earth loc={edata[0]['loc']} magnitude={edata[0]['magnitude']} time={edata[0]["time"]} />
+                            <Earth loc={edata[1]['loc']} magnitude={edata[1]['magnitude']} time={edata[1]["time"]} />
+                            <Earth loc={edata[2]['loc']} magnitude={edata[2]['magnitude']} time={edata[2]["time"]} />
+                            <Earth loc={edata[3]['loc']} magnitude={edata[3]['magnitude']} time={edata[3]["time"]} />
                         </Marquee>
                     </div>
                 </div>
 
                 <div className='flex flex-row gap-1 items-center justify-center mt-[10px]'>
-                    <div className='w-[500px] h-[600px] bg-gray-600 overflow-hidden rounded-lg'>
+                    <div className='w-[600px] h-[600px] bg-gray-600 overflow-hidden rounded-lg'>
                         {isLoaded ? (
                             <GoogleMap
                                 mapContainerStyle={mapStyles}
@@ -110,7 +111,8 @@ const Desasters = () => {
                         )}
                     </div>
                     <div className='w-[400px] h-[600px] bg-white shadow-lg rounded-lg p-4 overflow-scroll'>
-                        <h2 className='text-xl font-bold mb-4 text-center' style={{ fontFamily: 'Poppins', fontWeight: 700 }}>Disaster Alerts</h2>
+                        <h2 className='text-xl font-bold mb-4 text-center' style={{ fontFamily: 'Poppins', fontWeight: 700 }}>Alerts</h2>
+
                         <Card title={data[0]['message']} content={data[0]['source']} color={data[0]['color']} />
                         <Card title={data[1]['message']} content={data[1]['source']} color={data[1]['color']} />
                         <Card title={data[2]['message']} content={data[2]['source']} color={data[2]['color']} />
@@ -122,9 +124,26 @@ const Desasters = () => {
                         <Card title={data[8]['message']} content={data[8]['source']} color={data[8]['color']} />
                     </div>
                 </div>
+
+                <div className='flex items-center justify-center'>
+                    <div className='w-[900px] h-[400px] bg-white shadow-lg rounded-lg mt-6 mb-6'>
+                        <h1 className='text-center mt-2 font-semibold' style={{ fontSize: 24 }}>Sign Up to Get Alerts on Your Phone!</h1>
+                        <p className='p-4 justify-center text-center'>Get notifications on your phone as soon as our systems detect alerts, disasters detected around you.</p>
+                        <form className='grid grid-cols-2 gap-4 p-2'>
+                            <input type='text' placeholder='Name' className='h-[50px] border border-black rounded ml-4' />
+                            <input type='number' placeholder='Phone Number' className='h-[50px] border border-black rounded mr-4' />
+                            <input type='email' placeholder='Email' className='h-[50px] border border-black rounded ml-4' />
+                            <input type='text' placeholder='Location' className='h-[50px] border border-black rounded mr-4' />
+                            <button type='submit' className='col-span-2 mt-4 px-4 py-2 bg-blue-500 text-white rounded'>Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+
             </div >
         </>
     )
 }
 
-export default Desasters
+
+export default Disasters
+

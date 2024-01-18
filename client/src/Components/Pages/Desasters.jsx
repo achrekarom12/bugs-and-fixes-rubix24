@@ -1,8 +1,7 @@
 import React from 'react'
-import Desdata from '../../utils/Desasterinfo.js';
-import Climate from '../Elements/Climate.jsx';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Desasterget from '../../API_init/Desasterapi.js';
+import Climate from '../Elements/Climate.jsx';
+import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 
 const d = new Desasterget();
 const data = await d.alerts();
@@ -29,8 +28,16 @@ const Desasters = () => {
         lat: data[0]["loc"][1],
         lng: data[0]["loc"][0],
     };
-    
     const markers = [
+        { position: { lat: data[0]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 1' },
+        { position: { lat: data[1]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 2' },
+        { position: { lat: data[2]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 3' },
+        { position: { lat: data[3]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 4' },
+        { position: { lat: data[4]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 5' },
+        { position: { lat: data[5]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 6' },
+        { position: { lat: data[6]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 7' },
+        { position: { lat: data[7]['loc'][1], lng: data[0]['loc'][0] }, content: 'Marker 8' },
+
         { position: { lat: data[0]["loc"][1], lng: data[0]["loc"][0] }, content: 'Marker 1' },
         { position: { lat: 37.785, lng: -122.406 }, content: 'Marker 2' },
         // Add more markers as needed
@@ -49,7 +56,7 @@ const Desasters = () => {
                                 zoom={4.5}
                             >
                                 {markers.map((marker, index) => (
-                                    <Marker
+                                    <MarkerF
                                         key={index}
                                         position={marker.position}
                                         icon={{
@@ -65,7 +72,7 @@ const Desasters = () => {
                                                 <h3>{marker.content}</h3>
                                             </div>
                                         )}
-                                    </Marker>
+                                    </MarkerF>
                                 ))}
                             </GoogleMap>
 

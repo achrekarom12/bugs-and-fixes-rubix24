@@ -50,8 +50,7 @@ def get_relief_blogs(disaster):
 
         articles = {
             'title' : blog_dict[key],
-            'link': blog_body['data'][0]['fields']['url_alias'],
-            'loc': blog_body['data'][0]['fields']['primary_country']['location']
+            'link': blog_body['data'][0]['fields']['url_alias']
         }
         article.append(articles)
 
@@ -95,7 +94,13 @@ def get_earthquake_alerts():
     earthquake_alerts = []
 
     for i in range(5):
-        earthquake_alerts.append(earthq['alerts'][i]['warning_message'])
+        earthquakes = {
+            'lng': earthq['alerts'][i]['longitude'],
+            'lat': earthq['alerts'][i]['latitude'],
+            'magnitude': earthq['alerts'][i]['magnitude'],
+            'loc': earthq['alerts'][i]['direction']
+        }
+        earthquake_alerts.append(earthquakes)
 
     return jsonify(earthquake_alerts)
 

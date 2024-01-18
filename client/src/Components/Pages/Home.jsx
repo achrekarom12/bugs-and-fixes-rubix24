@@ -4,13 +4,15 @@ import Sidebar from '../Elements/Sidebar'
 import Desasters from './Desasters.jsx';
 import ContactUs from './ContactUs.jsx';
 
+
+
+
 const Home = () => {
   const visiblity_states = ["visible", "hidden"];
   const [visible, setvisible] = useState(1);
   const visiblitieupdate = (state) => {
     setvisible(state);
   }
-  // Initial map center coordinates
   return (
     <>
       <Navbar visiblitieupdate={visiblitieupdate} />

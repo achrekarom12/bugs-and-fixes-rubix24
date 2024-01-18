@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import Desasterget from '../../API_init/Desasterapi.js';
+import Earthquakeget from '../../API_init/earthquake.js';
 import Climate from '../Elements/Climate.jsx';
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import Marquee from "react-fast-marquee";
+
+const e = new Earthquakeget();
+const edata = await e.alerts();
 
 const d = new Desasterget();
 const data = await d.alerts();
@@ -16,6 +20,15 @@ function Card({ title, content, color }) {
             onMouseLeave={() => setBgColor('white')}>
             <h3 className='text-l leading-tight mb-2' style={{ fontWeight: 500 }}>{title}</h3>
             <p className=''>{content}</p>
+        </div>
+    );
+}
+
+function Earth({ loc, magnitude }) {
+    return (
+        <div>
+            <p className='font-semibold mr-2'>Magnitude: {magnitude}   Location: {loc} <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span> </p>
+
         </div>
     );
 }
@@ -53,10 +66,12 @@ const Desasters = () => {
         <>
             <div className='w-full h-[552px] sm:mt-[5px] mt-[10px] '>
                 <div className='flex items-center justify-center'>
-
                     <div className='w-[800px] bg-white shadow rounded-lg p-4 mb-4 item-center justify-center flex overflow-hidden'>
                         <Marquee>
-                            I can be a React component, multiple React components, or just some text.
+                            <Earth loc={edata[0]['loc']} magnitude={edata[0]['magnitude']} />
+                            <Earth loc={edata[1]['loc']} magnitude={edata[1]['magnitude']} />
+                            <Earth loc={edata[2]['loc']} magnitude={edata[2]['magnitude']} />
+                            <Earth loc={edata[3]['loc']} magnitude={edata[3]['magnitude']} />
                         </Marquee>
                     </div>
                 </div>

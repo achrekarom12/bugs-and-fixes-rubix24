@@ -4,7 +4,6 @@ import Navbar from '../Elements/Navbar';
 import Desasters from './Disasters.jsx';
 import ContactUs from './ContactUs.jsx';
 import Blog_page from './Search.jsx';
-import Blog_page from './Blog_page.jsx';
 import SubscribeForm from '../Elements/Subscribeform';
 
 

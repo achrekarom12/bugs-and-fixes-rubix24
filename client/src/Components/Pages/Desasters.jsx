@@ -11,7 +11,7 @@ const Desasters = () => {
     });
 
     const mapStyles = {
-        height: '400px',
+        height: '100%',
         width: '100%',
     };
 
@@ -19,7 +19,7 @@ const Desasters = () => {
         lat: 37.7749,
         lng: -122.4194,
     };
-    
+
     return (
         <>
             <div className='w-full h-[552px] sm:mt-[50px] mt-[10px] '>

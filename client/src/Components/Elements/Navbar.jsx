@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/Logo.png';
+<<<<<<< HEAD
+=======
 import { FaMagnifyingGlass } from "react-icons/fa6";
+>>>>>>> a7fcf4f95a8f7f42a72104a4426062e30dfb50f1
 
 const Navbar = (props) => {
   return (

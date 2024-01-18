@@ -5,14 +5,12 @@ import Navbar from './Components/Elements/Navbar';
 
 
 function App() {
-  const visiblitieupdate = (value) => {
-    // Your function implementation here
-  }
+
 
   return (
 
     <Router>
-      <Navbar visiblitieupdate={visiblitieupdate} />
+      <Navbar/>
       <Routes>
         <Route exact path="/" element={<Disasters />} />
         <Route exact path="/search" element={<Search />} />

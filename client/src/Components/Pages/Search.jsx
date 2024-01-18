@@ -25,7 +25,7 @@ const Search = () => {
     <div className='w-full'>
       <div className='flex flex-col justify-center items-center w-full'>
         <div className='flex flex-row gap-3'>
-          <input className='h-[50px] w-[600px] p-2' placeholder='Search' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+          <input className='h-[50px] w-[600px] p-2 border-none focus:outline-none' placeholder='Search' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
           <button className='w-[60px] bg-white rounded' onClick={handleSearch}>Search</button>
         </div>
         <div className='w-full h-screen bg-white mt-2 rounded-xl flex flex-col gap-4 justify-center items-center'>

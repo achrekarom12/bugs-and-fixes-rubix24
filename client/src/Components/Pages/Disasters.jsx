@@ -34,7 +34,9 @@ function Earth({ loc, magnitude, time }) {
     );
 }
 
-const Disaster = () => {
+
+const Disasters = () => {
+
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: ' AIzaSyB1XUi0NtTF-tzkXfztumuiE--O10b7tTc',
     });
@@ -109,7 +111,8 @@ const Disaster = () => {
                         )}
                     </div>
                     <div className='w-[400px] h-[600px] bg-white shadow-lg rounded-lg p-4 overflow-scroll'>
-                        <h2 className='text-xl font-bold mb-4 text-center' style={{ fontWeight: 700 }}>Alerts</h2>
+                        <h2 className='text-xl font-bold mb-4 text-center' style={{ fontFamily: 'Poppins', fontWeight: 700 }}>Alerts</h2>
+
                         <Card title={data[0]['message']} content={data[0]['source']} color={data[0]['color']} />
                         <Card title={data[1]['message']} content={data[1]['source']} color={data[1]['color']} />
                         <Card title={data[2]['message']} content={data[2]['source']} color={data[2]['color']} />
@@ -121,9 +124,26 @@ const Disaster = () => {
                         <Card title={data[8]['message']} content={data[8]['source']} color={data[8]['color']} />
                     </div>
                 </div>
+
+                <div className='flex items-center justify-center'>
+                    <div className='w-[900px] h-[400px] bg-white shadow-lg rounded-lg mt-6 mb-6'>
+                        <h1 className='text-center mt-2 font-semibold' style={{ fontSize: 24 }}>Sign Up to Get Alerts on Your Phone!</h1>
+                        <p className='p-4 justify-center text-center'>Get notifications on your phone as soon as our systems detect alerts, disasters detected around you.</p>
+                        <form className='grid grid-cols-2 gap-4 p-2'>
+                            <input type='text' placeholder='Name' className='h-[50px] border border-black rounded ml-4' />
+                            <input type='number' placeholder='Phone Number' className='h-[50px] border border-black rounded mr-4' />
+                            <input type='email' placeholder='Email' className='h-[50px] border border-black rounded ml-4' />
+                            <input type='text' placeholder='Location' className='h-[50px] border border-black rounded mr-4' />
+                            <button type='submit' className='col-span-2 mt-4 px-4 py-2 bg-blue-500 text-white rounded'>Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+
             </div >
         </>
     )
 }
 
-export default Disaster
+
+export default Disasters
+

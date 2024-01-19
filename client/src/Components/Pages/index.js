@@ -2,8 +2,8 @@ import Home from './Home';
 import ContactUs from './ContactUs';
 import Volunteer from './Volunteer';
 import Disasters from './Disasters';
-import Search from './Search';
-import Image from './Image'
+import TweetsAnalysis from './TweetsAnalysis';
+import ChatBot from './ChatBot';
 
 
-export { Home, ContactUs, Volunteer, Disasters, Search, Image }
+export { Home, ContactUs, Volunteer, Disasters, TweetsAnalysis, ChatBot }

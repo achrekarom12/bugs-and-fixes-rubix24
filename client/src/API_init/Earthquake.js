@@ -1,7 +1,7 @@
 class Earthquakeget
 {
     alerts = async ()=>{
-        const response = await fetch("http://127.0.0.1:5000/earthquake-alerts", {
+        const response = await fetch("http://127.0.0.1:8080/earthquake-alerts", {
             method:"GET",
             headers: {
                 'Content-Type': 'application/json',

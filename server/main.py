@@ -1,6 +1,10 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import requests
+import google.generativeai as genai
+import io
+from PIL import Image
+
 
 app = Flask(__name__)
 CORS(app)
@@ -106,6 +110,21 @@ def get_earthquake_alerts():
         earthquake_alerts.append(earthquakes)
 
     return jsonify(earthquake_alerts)
+
+@app.route('/predictImage', methods=['POST'])
+def predict_vulnerability():
+    try:
+        image_file = request.files['image']
+
+        # Convert image file to PIL Image object
+        image = Image.open(io.BytesIO(image_file.read()))
+        model = genai.GenerativeModel('gemini-pro-vision')
+        response = model.generate_content(["Detect whether the infrastructure given in the image is damaged or not. If its damaged provide recommendations for retrofitting or reinforcing structures to enhance resilience and reduce potential damage in 5-6 points", image], stream=True)
+        response.resolve()
+        print(response.text)
+        return jsonify({'reply': response.text})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

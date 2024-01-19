@@ -1,35 +1,25 @@
-import React, { useState } from 'react'
-import Navbar from '../Elements/Navbar';
-import Disaster from './Disasters.jsx';
-import ContactUs from './ContactUs.jsx';
-import Blog_page from './Blog_page.jsx';
-import SubscribeForm from '../Elements/Subscribeform';
+import React, { useState } from 'react';
+import SubscribeForm from '../Elements/SubscribeForm';
 
-const Home = () => {
+const App = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const openForm = () => {
+  const handleOpenForm = () => {
     setIsFormOpen(true);
   };
 
-  const closeForm = () => {
+  const handleCloseForm = () => {
     setIsFormOpen(false);
   };
 
   return (
-    <>
-      <div className='h-screen w-full flex flex-row gap-2'>
-        <div>
-          {/* Your main content */}
-          <button className="border-2 border-black p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
-          onClick={openForm}>Open Subscribe Form</button>
+    <div>
+      <button 
+      className='mt-4 px-2 py-1 bg-blue-500 text-white rounded'
+      onClick={handleOpenForm}>Open Form</button>
+      {isFormOpen && <SubscribeForm onClose={handleCloseForm} />}
+    </div>
+  );
+};
 
-          {/* Conditionally render the form based on state */}
-          {isFormOpen && <SubscribeForm onClose={closeForm} />}
-        </div>
-      </div>
-    </>
-  )
-}
-
-export default Home
+export default App;

@@ -62,7 +62,7 @@ const Disaster = () => {
 
     return (
         <>
-            <div className='w-full h-[552px] sm:mt-[5px] mt-[10px] '>
+            <div className='w-full h-[552px] sm:mt-[5px] mt-[10px] mb-4'>
                 <div className='flex items-center justify-center'>
                     <h1 className='font-semibold mr-5 mb-3' style={{ fontSize: 24, color: 'white' }}>Recent Earthquakes:</h1>
                     <div className='w-[600px] bg-white shadow rounded-lg p-4 mb-4 item-center justify-center flex overflow-hidden'>

@@ -19,7 +19,6 @@ const SubscribeForm = ({ onClose }) => {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-
     onClose();
   };
 

@@ -4,8 +4,8 @@ import Earthquakeget from '../../API_init/earthquake.js';
 import Climate from '../Elements/Climate.jsx';
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import Marquee from "react-fast-marquee";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+// import Skeleton from 'react-loading-skeleton'
+// import 'react-loading-skeleton/dist/skeleton.css'
 
 const e = new Earthquakeget();
 const edata = await e.alerts();
@@ -57,9 +57,9 @@ function Card({ cardKey, title, content, color }) {
                 onMouseEnter={() => setBgColor(color)}
                 onMouseLeave={() => setBgColor('white')}
                 onClick={handleCardClick}>
-                <h3 className='text-l leading-tight mb-2' style={{ fontWeight: 500 }}>{title || <Skeleton />}</h3>
+                <h3 className='text-l leading-tight mb-2' style={{ fontWeight: 500 }}>{title}</h3>
                 <hr style={{ backgroundColor: 'black', height: '2px' }} />
-                <p className=''>{content || <Skeleton />}</p>
+                <p className=''>{content}</p>
             </div>
 
             {isPopupOpen && (

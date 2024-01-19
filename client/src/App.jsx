@@ -1,8 +1,7 @@
 import './App.css'
-import { Disasters, ContactUs, Volunteer, Home, TweetsAnalysis, ChatBot } from './Components/Pages'
+import { Disasters, ContactUs, Volunteer, Home, TweetsAnalysis, ChatBot , Search} from './Components/Pages'
 import Navbar from './Components/Elements/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './Components/Elements/Navbar';
 
 
 function App() {  

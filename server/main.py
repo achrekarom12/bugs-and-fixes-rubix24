@@ -1,9 +1,18 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import requests
+import google.generativeai as genai
+import io
+from PIL import Image
+import ai21
 
 app = Flask(__name__)
 CORS(app)
+
+gemini_api_key = "AIzaSyAD6vm7g8PSXBH2npVkRSwLINbFcyYIpxY"
+genai.configure(api_key = gemini_api_key)
+
+alerts = []
 
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
@@ -11,16 +20,19 @@ def get_alerts():
     response = requests.get(url)
     data_response = response.json()
 
-    alerts = []
-
-    for i in range(9):
+    for i in range(3):
         latitude, longitude = map(float, data_response[i]['centroid'].split(','))
+        
+        ai21.api_key = 'iPUIaBJRH2WHx2yrJKYM0LCJnYV3gVxF'
+
+        mess = ai21.Paraphrase.execute(text=data_response[i]['warning_message'], style="general")
+
         alert = {
             'level': data_response[i]['severity'],
             'start': data_response[i]['effective_start_time'],
             'end': data_response[i]['effective_end_time'],
             'type': data_response[i]['disaster_type'],
-            'message':data_response[i]['warning_message'],
+            'message':mess['suggestions'][0]['text'],
             'color': data_response[i]['severity_color'],
             'loc': [latitude, longitude],
             'source': data_response[i]['alert_source']
@@ -29,6 +41,37 @@ def get_alerts():
 
     return jsonify(alerts)
 
+@app.route('/alerts22', methods=['GET'])
+def get_alerts22():
+
+
+    alerts2=[]
+
+    for i in range(3):
+
+        mes_pf = f"""
+        You are a disaster bot that takes alerts as an input and suggest precautions to be taken by the people.
+        Display the steps to be taken by the people in case of the following alert. Dont bold or anything, just give plain text. Give 2-3 points
+        alert: {alerts[i]['message']}
+        """
+
+        model = genai.GenerativeModel('gemini-pro')
+        mes = model.generate_content(mes_pf)
+
+
+        alert22 = {
+            'level': alerts[i]['level'],
+            'start': alerts[i]['start'],
+            'end': alerts[i]['end'],
+            'type': alerts[i]['type'],
+            'message':mes.text,
+            'color': alerts[i]['color'],
+            'loc': alerts[i]['loc'],
+            'source': alerts[i]['source']
+        }
+        alerts2.append(alert22)
+
+    return jsonify(alerts2)
 
 @app.route('/relief-blogs/<disaster>', methods=['GET'])
 def get_relief_blogs(disaster):
@@ -106,6 +149,21 @@ def get_earthquake_alerts():
         earthquake_alerts.append(earthquakes)
 
     return jsonify(earthquake_alerts)
+
+@app.route('/predictVulnerabilityOfInfraFromImage', methods=['POST'])
+def predict_vulnerability():
+    try:
+        image_file = request.files['image']
+
+        # Convert image file to PIL Image object
+        image = Image.open(io.BytesIO(image_file.read()))
+        model = genai.GenerativeModel('gemini-pro-vision')
+        response = model.generate_content(["Detect whether the infrastructure given in the image is damaged or not. If its damaged provide recommendations for retrofitting or reinforcing structures to enhance resilience and reduce potential damage in 5-6 points", image], stream=True)
+        response.resolve()
+        print(response.text)
+        return jsonify({'reply': response.text})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

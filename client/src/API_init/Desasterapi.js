@@ -27,8 +27,8 @@ class Desasterget {
 
     blogs = async (Search) => {
         console.log(Search)
-        const response = await fetch(`http://127.0.0.1:5000/relief-blogs/${Search}`, {
-            method: "GET",
+        const response  = await fetch("http://127.0.0.1:8080/relief-blogs/<disaster>",{
+            method:"GET",
             headers: {
                 'Content-Type': 'application/json',
             },
